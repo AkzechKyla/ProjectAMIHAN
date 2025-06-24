@@ -11,13 +11,13 @@ import {
 
 function MapComponent() {
     const position = {
-        lat: 37.7749,
-        lng: -122.4194
+        lat: 14.5875,
+        lng: 121.0447
     }
 
     return <>
         <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
-            <div>
+            <div className="h-full w-full">
                 <Map
                     defaultZoom={10}
                     defaultCenter={position}

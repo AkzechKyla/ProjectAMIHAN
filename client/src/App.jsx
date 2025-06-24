@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import './App.css'
 import axios from 'axios'
 
 import MapComponent from './MapComponent'
@@ -15,9 +14,9 @@ function App() {
 //   }, []);
 
   return (
-    <>
+    <div className="h-screen w-screen">
       <MapComponent />
-    </>
+    </div>
   )
 }
 
