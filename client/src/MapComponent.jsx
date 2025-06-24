@@ -17,7 +17,7 @@ function MapComponent() {
 
     return <>
         <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
-            <div style={{ height: "100vh", width: "100%" }}>
+            <div>
                 <Map
                     defaultZoom={10}
                     defaultCenter={position}
