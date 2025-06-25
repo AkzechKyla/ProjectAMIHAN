@@ -40,7 +40,7 @@ export default class Location {
         return this.precipitation;
     }
 
-        async fetchElevation() {
+    async fetchElevation() {
         const response = await axios.get("http://localhost:8080/api/elevation", {
             params: {
                 lat: this.lat,
