@@ -1,4 +1,5 @@
 import MapComponent from './components/MapComponent'
+import SidePanel from './components/SidePanel'
 
 function App() {
 //   const fetchAPI = async () => {
@@ -11,7 +12,8 @@ function App() {
 //   }, []);
 
   return (
-    <div className="h-screen w-screen">
+    <div className="h-screen w-screen flex">
+      <SidePanel />
       <MapComponent />
     </div>
   )
