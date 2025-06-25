@@ -1,4 +1,4 @@
-function InputBox({ label, type, value, name, setFormData }) {
+function InputBox({ label, type, value, name, setFormData, smallText = false }) {
     function handleChange(e) {
         const { name, value } = e.target;
         setFormData(prevData => ({
@@ -9,7 +9,7 @@ function InputBox({ label, type, value, name, setFormData }) {
 
     return (
         <div>
-            <label className="block text-sm font-medium text-gray-700">{label}</label>
+            <label className="block text-sm font-medium text-[--primary-blue] mb-2">{label}</label>
             <input
                 type={type}
                 name={name}
@@ -17,8 +17,11 @@ function InputBox({ label, type, value, name, setFormData }) {
                 onChange={handleChange}
                 required
                 readOnly={name !== "precipitation"}
-                className="w-full px-3 py-2 border rounded bg-white focus:outline-none"
+                className="w-full px-3 py-2 rounded-md bg-gray-100 text-gray-500 text-xs"
             />
+            {
+                smallText && <p className="text-gray-400 text-xs mt-2">{smallText}</p>
+            }
         </div>
     )
 }

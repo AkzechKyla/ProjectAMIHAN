@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import InputBox from "./InputBox";
+import Logo from "../assets/logo/logo.svg";
 
 function SidePanel({ location }) {
     const [formData, setFormData] = useState({
@@ -38,20 +39,22 @@ function SidePanel({ location }) {
     }, [location]);
 
     return (
-        <div className="w-7xl">
-            <div className="text-6xl font-bold mb-4">🌍 LOGO</div>
-            <div className="p-5 rounded-xl">
-                <form className="space-y-4 bg-white p-6 rounded-lg shadow-md">
-                    <div className="text-lg">Input Parameters</div>
+        <div className="w-7xl bg-[--primary-white] relative">
+            <div className="pl-7 z-0">
+                <img src={Logo} alt="Project AMIHAN" />
+            </div>
+            <div className="pl-7 pr-15 rounded-xl">
+                <form className="space-y-4 p-6 rounded-lg shadow-[0_0_10px_rgba(0,0,0,0.1)] z-10 relative">
+                    <div className="text-xl text-[--primary-blue] font-semibold">Input Parameters</div>
                     <InputBox
-                        label="Latitude"
+                        label="Latitude (°N)"
                         type="number"
                         value={formData.latitude}
                         name="latitude"
                         setFormData={setFormData}
                     />
                     <InputBox
-                        label="Longitude"
+                        label="Longitude (°E)"
                         type="number"
                         value={formData.longitude}
                         name="longitude"
@@ -63,6 +66,7 @@ function SidePanel({ location }) {
                         value={formData.elevation}
                         name="elevation"
                         setFormData={setFormData}
+                        smallText="Very Low (0-10), Low (5-20), Medium (15-40), High (30-100)"
                     />
                     <InputBox
                         label="Precipitation (mm)"
@@ -70,12 +74,13 @@ function SidePanel({ location }) {
                         value={formData.precipitation}
                         name="precipitation"
                         setFormData={setFormData}
+                        smallText="Light (μ=5), Moderate (μ=15), Heavy (μ=30), Extreme (μ=50)"
                     />
                     <button
                         type="submit"
-                        className="w-full py-2 px-4 font-semibold rounded "
+                        className="w-full mt-2 py-2 px-2 rounded-md font-semibold text-sm text-white cursor-pointer"
                     >
-                        Predict Flood Height
+                        Predict Flood Level
                     </button>
                 </form>
             </div>
