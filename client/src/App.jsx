@@ -9,20 +9,25 @@ function App() {
         lat: 14.5875,
         lng: 121.0447
     }
+    const loc = new Location(defaultLocation.lat, defaultLocation.lng)
 
     async function handleMapClick(event) {
         const lat = event.detail.latLng.lat;
         const lng = event.detail.latLng.lng;
         setClickedLocation({ lat, lng });
 
-        const loc = new Location(lat, lng);
+        loc.setLatitude(lat);
+        loc.setLongitude(lng);
 
         try {
-            const elevation = await loc.getElevation();
-            const precipitation = await loc.getPrecipitation();
+            const elevation = await loc.fetchElevation();
+            const precipitation = await loc.fetchPrecipitation();
 
-            console.log("Elevation:", elevation);
-            console.log("Precipitation:", precipitation);
+            loc.setElevation(elevation);
+            loc.setPrecipitation(precipitation);
+
+            console.log("Elevation:", loc.getElevation());
+            console.log("Precipitation:", loc.getPrecipitation());
         } catch (error) {
             console.error("API call failed: ", error);
         }
@@ -30,7 +35,7 @@ function App() {
 
     return (
       <div className="h-screen w-screen flex">
-        <SidePanel />
+        <SidePanel loc={loc} />
         <MapComponent
           clickedLocation={clickedLocation}
           defaultLocation={defaultLocation}
