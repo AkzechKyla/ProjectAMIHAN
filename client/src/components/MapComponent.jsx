@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import axios from 'axios'
+import { useState } from "react"
 import {
     AdvancedMarker,
     APIProvider,
     Map
-} from "@vis.gl/react-google-maps";
+} from "@vis.gl/react-google-maps"
 
 function MapComponent() {
     const [clickedLocation, setClickedLocation] = useState(null);
@@ -18,6 +19,14 @@ function MapComponent() {
         const lat = event.detail.latLng.lat;
         const lng = event.detail.latLng.lng;
         setClickedLocation({ lat, lng });
+        fetchLocationData(lat, lng);
+    }
+
+    async function fetchLocationData(lat, lng) {
+        const response = await axios.get("http://localhost:8080/api/elevation", {
+            params: { lat, lng },
+        });
+        console.log(response.data.elevation);
     }
 
     return <>
