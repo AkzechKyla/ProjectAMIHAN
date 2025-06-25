@@ -1,12 +1,12 @@
 "use client";
 
-import axios from 'axios'
 import { useState } from "react"
 import {
     AdvancedMarker,
     APIProvider,
     Map
 } from "@vis.gl/react-google-maps"
+import Location from '../models/Location';
 
 function MapComponent() {
     const [clickedLocation, setClickedLocation] = useState(null);
@@ -15,18 +15,22 @@ function MapComponent() {
         lng: 121.0447
     }
 
-    function handleMapClick(event) {
+    async function handleMapClick(event) {
         const lat = event.detail.latLng.lat;
         const lng = event.detail.latLng.lng;
         setClickedLocation({ lat, lng });
-        fetchLocationData(lat, lng);
-    }
 
-    async function fetchLocationData(lat, lng) {
-        const response = await axios.get("http://localhost:8080/api/elevation", {
-            params: { lat, lng },
-        });
-        console.log(response.data.elevation);
+        const loc = new Location(lat, lng);
+
+        try {
+            const elevation = await loc.getElevation();
+            const precipitation = await loc.getPrecipitation();
+
+            console.log("Elevation:", elevation);
+            console.log("Precipitation:", precipitation);
+        } catch (error) {
+            console.error("API call failed: ", error);
+        }
     }
 
     return <>

@@ -1,7 +1,4 @@
-import { useState, useEffect } from 'react'
-import axios from 'axios'
-
-import MapComponent from './MapComponent'
+import MapComponent from './components/MapComponent'
 
 function App() {
 //   const fetchAPI = async () => {
