@@ -17,15 +17,13 @@ scaler_model = "models/flood_scaler.joblib"
 model = tf.keras.models.load_model(anfis_model, compile=False)
 scaler = joblib.load(scaler_model)
 
-@app.route("/predict", methods=["GET", "POST"])
-def predict():
+@app.route("/predict", methods=["GET"])
+def get_prediction():
     try:
-        data = request.get_json()
-
-        lat = float(data["latitude"])
-        lon = float(data["longitude"])
-        elevation = float(data["elevation"])
-        precipitation = float(data["precipitation"])
+        lat = float(request.args.get("lat"))
+        lng = float(request.args.get("lng"))
+        elevation = float(request.args.get("elevation"))
+        precipitation = float(request.args.get("precipitation"))
 
         # Prepare and scale input
         input_data = np.array([[lat, lng, elevation, precipitation]])
