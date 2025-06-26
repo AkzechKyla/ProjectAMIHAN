@@ -9,7 +9,7 @@ import {
 function MapComponent({ currentLocation, defaultLocation, handleMapClick }) {
     return <>
         <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
-            <div className="h-full w-full">
+            <div className="h-full w-full ">
                 <Map
                     defaultZoom={10}
                     defaultCenter={defaultLocation}

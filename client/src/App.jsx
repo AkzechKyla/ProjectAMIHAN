@@ -16,13 +16,17 @@ function App() {
     }
 
     return (
-      <div className="h-screen w-screen flex">
-        <SidePanel location={currentLocation} />
-        <MapComponent
-          currentLocation={currentLocation}
-          defaultLocation={defaultLocation}
-          handleMapClick={handleMapClick}
-        />
+      <div className="h-screen w-screen flex overflow-hidden">
+        <div className="min-w-2xl overflow-y-auto scrollbar-hide">
+          <SidePanel location={currentLocation} />
+        </div>
+        <div className="flex-1">
+          <MapComponent
+            currentLocation={currentLocation}
+            defaultLocation={defaultLocation}
+            handleMapClick={handleMapClick}
+          />
+        </div>
       </div>
     )
 }

@@ -39,7 +39,7 @@ function SidePanel({ location }) {
     }, [location]);
 
     return (
-        <div className="w-7xl bg-[--primary-white] relative">
+        <div className="bg-[--primary-white] relative">
             <div className="pl-7 z-0">
                 <img src={Logo} alt="Project AMIHAN" />
             </div>
