@@ -8,5 +8,5 @@ npm install
 npm run dev
 
 cd server
-pip install flask flask-cors python-dotenv requests
+pip install -r requirements.txt
 python main.py
