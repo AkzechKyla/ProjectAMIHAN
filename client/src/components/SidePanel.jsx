@@ -47,6 +47,10 @@ function SidePanel({ location }) {
 
     async function handlePredictButton(e) {
         e.preventDefault(); // to prevent page reload
+
+        // sync latest form values - only precipitation editable
+        location.setPrecipitation(parseFloat(formData.precipitation));
+
         const result = await location.fetchPrediction();
 
         location.setFloodRisk(result.flood_height);
