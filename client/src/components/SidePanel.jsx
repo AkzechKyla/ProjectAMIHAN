@@ -13,6 +13,7 @@ function SidePanel({ location }) {
     const [floodHeight, setFloodHeight] = useState(null);
     const [riskLevel, setRiskLevel] = useState(null);
     const [riskCategory, setRiskCategory] = useState(null);
+    const [riskCategoryColor, setRiskCategoryColor] = useState(null);
     const [elevationLevel, setElevationLevel] = useState(null);
     const [precipitationLevel, setPrecipitationLevel] = useState(null);
 
@@ -54,6 +55,7 @@ function SidePanel({ location }) {
 
         setFloodHeight(location.getFloodHeight());
         setRiskCategory(location.getRiskCategory());
+        setRiskCategoryColor(location.getRiskCategoryColor());
         setRiskLevel(location.getRiskLevel());
         setElevationLevel(location.getElevationLevel());
         setPrecipitationLevel(location.getPrecipitationLevel());
@@ -73,6 +75,7 @@ function SidePanel({ location }) {
                 <Prediction
                     floodHeight={floodHeight}
                     riskCategory={riskCategory}
+                    riskCategoryColor={riskCategoryColor}
                     riskLevel={riskLevel}
                     elevationLevel={elevationLevel}
                     precipitationLevel={precipitationLevel}
