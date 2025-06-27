@@ -1,3 +1,5 @@
+import warningIcon from '../assets/logo/Triangle_Warning.svg';
+
 function Prediction({ floodHeight, riskCategory, riskCategoryColor, riskLevel, elevationLevel, precipitationLevel }) {
     return(
         <div className="pl-7 pr-15 rounded-xl">
@@ -15,7 +17,8 @@ function Prediction({ floodHeight, riskCategory, riskCategoryColor, riskLevel, e
                         <div className="flex flex-col text-center items-center">
                             <p className="text-3xl font-medium">{floodHeight.toFixed(2)}</p>
                             <p className="text-sm text-gray-400 mt-2">Flood Height (0-5 scale)</p>
-                            <div className="inline-block w-24 items-center text-center text-white text-sm font-semibold px-4 py-2 rounded-xl mt-4 mb-4" style={{ backgroundColor: riskCategoryColor }}>
+                            <div className="inline-flex w-24 items-center text-center text-white text-sm font-semibold px-4 py-2 rounded-xl mt-4 mb-4" style={{ backgroundColor: riskCategoryColor }}>
+                                <img src={warningIcon} className="pr-1"/>
                                 {riskCategory}
                             </div>
                         </div>
