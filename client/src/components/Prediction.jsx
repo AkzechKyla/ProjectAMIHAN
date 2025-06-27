@@ -1,6 +1,6 @@
 import warningIcon from '../assets/logo/Triangle_Warning.svg';
 
-function Prediction({ floodHeight, riskCategory, riskCategoryColor, riskLevel, elevationLevel, precipitationLevel }) {
+function Prediction({ floodHeight, riskCategory, riskCategoryColor, riskLevel, elevationLevel, precipitationLevel, predictionTimestamp }) {
     return(
         <div className="pl-7 pr-15 rounded-xl">
             <div className="p-6 rounded-lg shadow-[0_0_10px_rgba(0,0,0,0.1)] min-h-[353px] min-w-[584px]">
@@ -12,7 +12,7 @@ function Prediction({ floodHeight, riskCategory, riskCategoryColor, riskLevel, e
                 }
                 {floodHeight !== null && <div>
                     <div className="text-sm text-gray-400 mt-2 mb-4">
-                        <p>As of <span className="font-bold">6:09:02 PM, Wednesday June 25, 2025</span></p>
+                        <p>As of <span className="font-bold">{predictionTimestamp}</span></p>
                         <p>Philippine Time (UTC+08:00)</p>
                     </div>
                     <div>

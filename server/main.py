@@ -6,6 +6,7 @@ import joblib
 import sklearn
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from utils import format_prediction_timestamp
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -36,7 +37,8 @@ def get_prediction():
         return jsonify({
             "flood_height": float(round(prediction, 2)),
             "elevation_level": scaled_input[0][2],
-            "precipitation_level": scaled_input[0][3]
+            "precipitation_level": scaled_input[0][3],
+            "timestamp": format_prediction_timestamp()
         })
 
     except Exception as e:

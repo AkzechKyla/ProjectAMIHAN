@@ -16,6 +16,7 @@ function SidePanel({ location }) {
     const [riskCategoryColor, setRiskCategoryColor] = useState(null);
     const [elevationLevel, setElevationLevel] = useState(null);
     const [precipitationLevel, setPrecipitationLevel] = useState(null);
+    const [predictionTimestamp, setPredictionTimestamp] = useState(null);
 
     useEffect(() => {
         if (!location) return;
@@ -63,6 +64,7 @@ function SidePanel({ location }) {
         setRiskLevel(location.getRiskLevel());
         setElevationLevel(location.getElevationLevel());
         setPrecipitationLevel(location.getPrecipitationLevel());
+        setPredictionTimestamp(result.timestamp);
     }
 
     return (
@@ -83,6 +85,7 @@ function SidePanel({ location }) {
                     riskLevel={riskLevel}
                     elevationLevel={elevationLevel}
                     precipitationLevel={precipitationLevel}
+                    predictionTimestamp={predictionTimestamp}
                 />
             </div>
         </div>
