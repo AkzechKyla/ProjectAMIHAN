@@ -9,6 +9,12 @@ function SidePanel({ location }) {
         elevation: "",
         precipitation: ""
     })
+    const [prediction, setPrediction] = useState(null);
+    const [floodHeight, setFloodHeight] = useState(null);
+    const [riskLevel, setRiskLevel] = useState(null);
+    const [riskCategory, setRiskCategory] = useState(null);
+    const [elevationLevel, setElevationLevel] = useState(null);
+    const [precipitationLevel, setPrecipitationLevel] = useState(null);
 
     useEffect(() => {
         if (!location) return;
@@ -37,6 +43,21 @@ function SidePanel({ location }) {
 
         fetchData();
     }, [location]);
+
+    async function handlePredictButton(e) {
+        e.preventDefault(); // to prevent page reload
+        const result = await location.fetchPrediction();
+
+        location.setFloodRisk(result.flood_height);
+        location.setElevationLevel(result.elevation_level);
+        location.setPrecipitationLevel(result.precipitation_level);
+
+        setFloodHeight(location.getFloodHeight());
+        setRiskCategory(location.getRiskCategory());
+        setRiskLevel(location.getRiskLevel());
+        setElevationLevel(location.getElevationLevel());
+        setPrecipitationLevel(location.getPrecipitationLevel());
+    }
 
     return (
         <div className="bg-[--primary-white] relative">
@@ -78,38 +99,47 @@ function SidePanel({ location }) {
                         <button
                             type="submit"
                             className="w-full mt-2 py-2 px-2 rounded-md font-semibold text-sm text-white cursor-pointer"
+                            onClick={handlePredictButton}
                         >
                             Predict Flood Level
                         </button>
                     </form>
                 </div>
                 <div className="pl-7 pr-15 rounded-xl">
-                    <div className="p-6 rounded-lg shadow-[0_0_10px_rgba(0,0,0,0.1)] relative">
-                        <div>Prediction Results</div>
-                        <div>
-                            <p>As of 6:09:02 PM, Wednesday June 25, 2025</p>
-                            <p>Philippine Time (UTC+08:00)</p>
-                        </div>
-                        <div>
-                            <p>3.94</p>
-                            <p>Flood Height (0-5 scale)</p>
-                            <div>DANGER</div>
-                        </div>
-                        <hr className="my-4 border-t-2 border-gray-200" />
-                        <div>
-                            <div>
-                                <p>86.9%</p>
-                                <p>Confidence</p>
+                    <div className="p-6 rounded-lg shadow-[0_0_10px_rgba(0,0,0,0.1)]">
+                        {
+                            floodHeight === null && <p>Select a location and click "Predict Flood Level" to see results.</p>
+                        }
+                        {
+                            floodHeight !== null && <div>
+                                <div>Prediction Results</div>
+                                <div>
+                                    <p>As of 6:09:02 PM, Wednesday June 25, 2025</p>
+                                    <p>Philippine Time (UTC+08:00)</p>
+                                </div>
+                                <div>
+                                    <div>
+                                        <p>{floodHeight}</p>
+                                        <p>Flood Height (0-5 scale)</p>
+                                        <div>{riskCategory}</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div>
+                                        <p>{riskLevel}</p>
+                                        <p>Risk Level</p>
+                                    </div>
+                                    <div>
+                                        <p>{elevationLevel}</p>
+                                        <p>Elevation</p>
+                                    </div>
+                                    <div>
+                                        <p>{precipitationLevel}</p>
+                                        <p>Precipitation</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <p>Low</p>
-                                <p>Elevation</p>
-                            </div>
-                            <div>
-                                <p>Moderate</p>
-                                <p>Precipitation</p>
-                            </div>
-                        </div>
+                        }
                     </div>
                 </div>
             </div>
