@@ -11,7 +11,7 @@ function MapComponent({ currentLocation, defaultLocation, handleMapClick }) {
         <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
             <div className="h-full w-full ">
                 <Map
-                    defaultZoom={10}
+                    defaultZoom={15}
                     defaultCenter={defaultLocation}
                     mapId={import.meta.env.VITE_GOOGLE_MAPS_MAP_ID}
                     onClick={handleMapClick}
