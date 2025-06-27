@@ -19,9 +19,6 @@ function InputBox({ label, type, value, name, setFormData, smallText = false }) 
                 readOnly={name !== "precipitation"}
                 className="w-full px-3 py-2 rounded-md bg-gray-100 text-gray-500 text-xs"
             />
-            {
-                smallText && <p className="text-gray-400 text-xs mt-2">{smallText}</p>
-            }
         </div>
     )
 }

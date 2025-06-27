@@ -67,7 +67,6 @@ function SidePanel({ location }) {
                             value={formData.elevation}
                             name="elevation"
                             setFormData={setFormData}
-                            smallText="Very Low (0-10), Low (5-20), Medium (15-40), High (30-100)"
                         />
                         <InputBox
                             label="Precipitation (mm)"
@@ -75,7 +74,6 @@ function SidePanel({ location }) {
                             value={formData.precipitation}
                             name="precipitation"
                             setFormData={setFormData}
-                            smallText="Light (μ=5), Moderate (μ=15), Heavy (μ=30), Extreme (μ=50)"
                         />
                         <button
                             type="submit"
