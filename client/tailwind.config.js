@@ -1,11 +1,10 @@
-module.exports = {
-  content: ['./index.html', './src/**/*.{js,jsx}'],
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}", // adjust if your code is in a different directory
+  ],
   theme: {
-    extend: {
-      fontFamily: {
-        inter: ['Inter', 'sans-serif'],
-      },
-    },
+    extend: {},
   },
   plugins: [],
 };
