@@ -34,7 +34,9 @@ def get_prediction():
         prediction = max(0, min(5, prediction))
 
         return jsonify({
-            "flood_height": float(round(prediction, 2))
+            "flood_height": float(round(prediction, 2)),
+            "elevation_level": scaled_input[0][2],
+            "precipitation_level": scaled_input[0][3]
         })
 
     except Exception as e:
