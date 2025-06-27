@@ -1,4 +1,4 @@
-function InputBox({ label, type, value, name, setFormData, smallText = false }) {
+function InputBox({ label, type, value, name, setFormData }) {
     function handleChange(e) {
         const { name, value } = e.target;
         setFormData(prevData => ({
