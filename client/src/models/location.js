@@ -27,31 +27,27 @@ export default class Location {
         this.lng = lng;
     }
 
-    setFloodHeight(floodHeight) {
+    _setFloodHeight(floodHeight) {
         this.floodHeight = floodHeight;
     }
 
-    setRiskLevel() {
+    _setRiskLevel() {
         if (this.floodHeight <= 0.5) {
             this.riskLevel = "None";
         } else if (this.floodHeight <= 1.5) {
             this.riskLevel = "Very Low";
         } else if (this.floodHeight <= 2.5) {
             this.riskLevel = "Low";
-            // this.riskColor = "#f1c40f";
         } else if (this.floodHeight <= 3.5) {
             this.riskLevel = "Moderate";
-            // this.riskColor = "#e67e22";
         } else if (this.floodHeight <= 4.5) {
             this.riskLevel = "High";
-            // this.riskColor = "#e74c3c";
         } else {
             this.riskLevel = "Very High";
-            // this.riskColor = "#8e44ad";
         }
     }
 
-    setRiskColor() {
+    _setRiskColor() {
         if (this.riskLevel === "None") {
             this.riskColor = "#808080";
         } else if (this.riskLevel === "Very Low") {
@@ -65,6 +61,12 @@ export default class Location {
         } else {
             this.riskColor = "#8e44ad";
         }
+    }
+
+    setFloodRisk(floodHeight) {
+        this._setFloodHeight(floodHeight);
+        this._setRiskLevel();
+        this._setRiskColor();
     }
 
     getLatitude() {
