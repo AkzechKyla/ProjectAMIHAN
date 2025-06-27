@@ -10,7 +10,8 @@ export default class Location {
         this.precipitationLevel = null;
         this.floodHeight = null;
         this.riskLevel = null;
-        this.riskColor = null;
+        this.riskCategory = null;
+        this.riskCategoryColor = null;
     }
 
     setElevation(elevation) {
@@ -65,38 +66,47 @@ export default class Location {
         if (this.floodHeight <= 0.5) {
             this.riskLevel = "None";
         } else if (this.floodHeight <= 1.5) {
-            this.riskLevel = "Very Low";
-        } else if (this.floodHeight <= 2.5) {
             this.riskLevel = "Low";
-        } else if (this.floodHeight <= 3.5) {
+        } else if (this.floodHeight <= 2.5) {
             this.riskLevel = "Moderate";
-        } else if (this.floodHeight <= 4.5) {
+        } else if (this.floodHeight <= 3.5) {
             this.riskLevel = "High";
-        } else {
+        } else if (this.floodHeight <= 4.5) {
             this.riskLevel = "Very High";
+        } else {
+            this.riskLevel = "Extreme";
         }
     }
 
-    _setRiskColor() {
-        if (this.riskLevel === "None") {
-            this.riskColor = "#808080";
-        } else if (this.riskLevel === "Very Low") {
-            this.riskColor = "#2ecc71";
-        } else if (this.riskLevel === "Low") {
-            this.riskColor = "#f1c40f";
+    _setRiskCategory() {
+        if (this.riskLevel === "None" || this.riskLevel === "Low") {
+            this.riskCategory = "SAFE";
         } else if (this.riskLevel === "Moderate") {
-            this.riskColor = "#e67e22";
+            this.riskCategory = "ALERT";
         } else if (this.riskLevel === "High") {
-            this.riskColor = "#e74c3c";
-        } else {
-            this.riskColor = "#8e44ad";
+            this.riskCategory = "DANGER";
+        } else if (this.riskLevel === "Very High" || this.riskLevel === "Extreme") {
+            this.riskCategory = "SEVERE";
+        }
+    }
+
+    _setRiskCategoryColor() {
+        if (this.riskCategory === "SAFE") {
+            this.riskCategoryColor = "#16F962";
+        } else if (this.riskCategory === "ALERT") {
+            this.riskCategoryColor = "#F9EA16";
+        } else if (this.riskCategory === "DANGER") {
+            this.riskCategoryColor = "#F97316";
+        } else if (this.riskCategory === "SEVERE") {
+            this.riskCategoryColor = "#F91616";
         }
     }
 
     setFloodRisk(floodHeight) {
         this._setFloodHeight(floodHeight);
         this._setRiskLevel();
-        this._setRiskColor();
+        this._setRiskCategory();
+        this._setRiskCategoryColor();
     }
 
     getLatitude() {
@@ -131,8 +141,12 @@ export default class Location {
         return this.riskLevel;
     }
 
-    getRiskColor() {
-        return this.riskColor;
+    getRiskCategory() {
+        return this.riskCategory;
+    }
+
+    getRiskCategoryColor() {
+        return this.riskCategoryColor;
     }
 
     async fetchElevation() {
