@@ -7,6 +7,7 @@ export default class Location {
         this.elevation = null;
         this.elevationLevel = null;
         this.precipitation = null;
+        this.precipitationLevel = null;
         this.floodHeight = null;
         this.riskLevel = null;
         this.riskColor = null;
@@ -32,6 +33,20 @@ export default class Location {
 
     setPrecipitation(precipitation) {
         this.precipitation = precipitation;
+    }
+
+    setPrecipitationLevel(precipitationLevel) {
+         if (precipitationLevel <= 0.20) {
+            this.precipitationLevel = "Light";
+         } else if (precipitationLevel <= 0.40) {
+            this.precipitationLevel = "Moderate";
+         } else if (precipitationLevel <= 0.70) {
+            this.precipitationLevel = "Heavy";
+         } else if (precipitationLevel <= 0.90) {
+            this.precipitationLevel = "Very Heavy";
+         } else {
+            this.precipitationLevel = "Extreme";
+         }
     }
 
     setLatitude(lat) {
@@ -102,6 +117,10 @@ export default class Location {
 
     getPrecipitation() {
         return this.precipitation;
+    }
+
+    getPrecipitationLevel() {
+        return this.precipitationLevel;
     }
 
     getFloodHeight() {
