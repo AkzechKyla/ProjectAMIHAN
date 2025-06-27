@@ -108,7 +108,7 @@ const LandingPage = () => {
                 Fuzzy Logic
               </h3>
               <p className="text-gray-400 text-[16px] leading-snug">
-                Handles uncertainty and allows the<br /> system to reason with imprecise<br /> information, much like a human<br /> expert would
+                Handles uncertainty and allows <br />the system to reason with<br /> imprecise information, much<br /> like a human expert would
               </p>
             </div>
           </div>
