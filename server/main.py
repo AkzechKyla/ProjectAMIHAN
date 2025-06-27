@@ -33,26 +33,8 @@ def get_prediction():
         prediction = model.predict(scaled_input)[0][0]
         prediction = max(0, min(5, prediction))
 
-        if prediction <= 1:
-            risk_level = "Very Low"
-            risk_color = "#2ecc71"
-        elif prediction <= 2:
-            risk_level = "Low"
-            risk_color = "#f1c40f"
-        elif prediction <= 3:
-            risk_level = "Moderate"
-            risk_color = "#e67e22"
-        elif prediction <= 4:
-            risk_level = "High"
-            risk_color = "#e74c3c"
-        else:
-            risk_level = "Very High"
-            risk_color = "#8e44ad"
-
         return jsonify({
-            "flood_height": float(round(prediction, 2)),
-            "risk_level": risk_level,
-            "risk_color": risk_color,
+            "flood_height": float(round(prediction, 2))
         })
 
     except Exception as e:

@@ -6,6 +6,9 @@ export default class Location {
         this.lng = lng;
         this.elevation = null;
         this.precipitation = null;
+        this.floodHeight = null;
+        this.riskLevel = null;
+        this.riskColor = null;
     }
 
     setElevation(elevation) {
@@ -24,6 +27,46 @@ export default class Location {
         this.lng = lng;
     }
 
+    setFloodHeight(floodHeight) {
+        this.floodHeight = floodHeight;
+    }
+
+    setRiskLevel() {
+        if (this.floodHeight <= 0.5) {
+            this.riskLevel = "None";
+        } else if (this.floodHeight <= 1.5) {
+            this.riskLevel = "Very Low";
+        } else if (this.floodHeight <= 2.5) {
+            this.riskLevel = "Low";
+            // this.riskColor = "#f1c40f";
+        } else if (this.floodHeight <= 3.5) {
+            this.riskLevel = "Moderate";
+            // this.riskColor = "#e67e22";
+        } else if (this.floodHeight <= 4.5) {
+            this.riskLevel = "High";
+            // this.riskColor = "#e74c3c";
+        } else {
+            this.riskLevel = "Very High";
+            // this.riskColor = "#8e44ad";
+        }
+    }
+
+    setRiskColor() {
+        if (this.riskLevel === "None") {
+            this.riskColor = "#808080";
+        } else if (this.riskLevel === "Very Low") {
+            this.riskColor = "#2ecc71";
+        } else if (this.riskLevel === "Low") {
+            this.riskColor = "#f1c40f";
+        } else if (this.riskLevel === "Moderate") {
+            this.riskColor = "#e67e22";
+        } else if (this.riskLevel === "High") {
+            this.riskColor = "#e74c3c";
+        } else {
+            this.riskColor = "#8e44ad";
+        }
+    }
+
     getLatitude() {
         return this.lat;
     }
@@ -38,6 +81,18 @@ export default class Location {
 
     getPrecipitation() {
         return this.precipitation;
+    }
+
+    getFloodHeight() {
+        return this.floodHeight;
+    }
+
+    getRiskLevel() {
+        return this.riskLevel;
+    }
+
+    getRiskColor() {
+        return this.riskColor;
     }
 
     async fetchElevation() {
@@ -60,5 +115,18 @@ export default class Location {
         });
 
         return response.data.precipitation;
+    }
+
+    async fetchPrediction() {
+        const response = await axios.get("http://localhost:8080/predict", {
+            params: {
+                lat: this.lat,
+                lng: this.lng,
+                elevation: this.elevation,
+                precipitation: this.precipitation
+            },
+        });
+
+        return response.data;
     }
 }
