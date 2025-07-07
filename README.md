@@ -17,6 +17,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
+![image](https://github.com/user-attachments/assets/ed59001e-6290-405b-a053-842fe961f68f)
 
 **Project AMIHAN** is a web application that implements an AI model to predict flood heights in the Philippines—a country highly susceptible to flooding.
 
@@ -77,6 +78,9 @@ Create a `.env` file in the `client` folder with:
    * Flood height level prediction
    * Risk level & category
    * Elevation & precipitation level
+
+![image](https://github.com/user-attachments/assets/8353939c-f3c8-4acb-b171-fef1777936ef)
+![image](https://github.com/user-attachments/assets/fd34666e-b962-43fe-8110-5d33406f76de)
 
 <!-- ROADMAP -->
 ## Roadmap
